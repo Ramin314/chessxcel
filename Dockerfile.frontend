@@ -1,0 +1,13 @@
+FROM node:14
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 8000
+
+CMD ["npx", "webpack", "serve", "--config", "webpack.config.cjs", "--mode", "development", "--port", "8000"]

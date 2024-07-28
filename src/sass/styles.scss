@@ -1,0 +1,63 @@
+body {
+    min-height: 100vh;
+    margin: 0;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.view-heading {
+    font-size: 48px !important;
+    font-weight: 600 !important;
+    color: #27273e;
+}
+
+.view-heading-2 {
+    font-size: 22px !important;
+    font-weight: 600 !important;
+    color: #27273e;
+}
+
+.oval-button {
+    border-radius: 50px !important;
+    text-transform: none !important;
+    letter-spacing: 1px;
+}
+
+.MuiInputBase-root {
+    background-color: white;
+}
+
+.MuiToggleButtonGroup-root {
+    background-color: white;
+    color: rgb(0, 86, 210);
+}
+
+.MuiChip-root {
+    margin: 0.3em !important;
+}
+
+.MuiDateCalendar-root .Mui-selected {
+    background-color: #635bff !important;
+}
+
+.chessboard {
+    justify-content: center !important;
+}
+
+.chessboard > :first-child {
+    width: auto !important;
+}
+
+.move-tracker {
+    overflow-y: scroll;
+    height: 400px;
+    width: 15em !important;
+}
+
+@media (max-width: 670px) {
+    .move-tracker {
+        display: none;
+    }
+}
