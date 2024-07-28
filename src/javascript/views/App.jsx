@@ -24,6 +24,10 @@ const theme = createTheme({
       main: '#635bff',
       contrastText: '#fff',
     },
+    tertiary: {
+      main: '#3d5afe',
+      contrastText: '#fff',
+    },
     typography: {
       allVariants: {
         color: '#27273e',

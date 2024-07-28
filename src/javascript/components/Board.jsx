@@ -13,6 +13,7 @@ import {
 } from '@mui/icons-material';
 import MoveTracker from './MoveTracker.jsx';
 import StockfishAnalysis from './StockfishAnalysis.jsx';
+import Explorer from './Explorer.jsx';
 
 const convertFENsToMoves = (fenArray) => {
   const chess = new Chess();
@@ -59,6 +60,7 @@ const Board = ({
   setPgnMoves,
   edit,
   showMoveTracker,
+  showExplorer,
   showStockfish,
 }) => {
   const [fenPositions, setFenPositions] = useState([]);
@@ -184,6 +186,13 @@ const Board = ({
         {
           showMoveTracker && <MoveTracker
             pgnMoves={pgnMoves}
+            currentMoveIndex={currentMoveIndex}
+            handleMoveClick={handleMoveClick}
+          />
+        }
+        {
+          showExplorer && <Explorer
+            fenPositions={fenPositions}
             currentMoveIndex={currentMoveIndex}
             handleMoveClick={handleMoveClick}
           />

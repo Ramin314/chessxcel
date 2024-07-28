@@ -19,9 +19,11 @@ import {
   Edit as EditIcon,
   Delete as DeleteIcon,
   Cancel as CancelIcon,
+  Psychology as PsychologyIcon,
 } from '@mui/icons-material';
 import Board from '../../components/Board.jsx';
 import Pagination from '../../components/Pagination.jsx';
+import CustomAlert from '../../components/CustomAlert.jsx';
 
 import { useGlobal } from '../GlobalContext.jsx';
 
@@ -69,12 +71,10 @@ const Games = () => {
       setDeleteMessage('Game successfully deleted');
       setShowDeleteModal(false);
       fetchGames();
-      setAlertVisible(true); // Show the Alert
-      setTimeout(() => setAlertVisible(false), 3000); // Hide the Alert after 3 seconds
+      setAlertVisible(true);
     } catch (error) {
       setDeleteMessage('Error deleting the game');
-      setAlertVisible(true); // Show the Alert
-      setTimeout(() => setAlertVisible(false), 3000); // Hide the Alert after 3 seconds
+      setAlertVisible(true);
     }
   };
 
@@ -96,10 +96,10 @@ const Games = () => {
       </Typography>
       <Box sx={{ m: 5 }}></Box>
 
+      <Board position="start" pgnMoves={''} edit={true} showMoveTracker={false} showStockfish={false} showExplorer={true} />
+
       {alertVisible && (
-        <Alert variant="filled" severity={deleteMessage.includes('Error') ? 'error' : 'success'}>
-          {deleteMessage}
-        </Alert>
+        <CustomAlert deleteMessage={deleteMessage} alertVisible={alertVisible} />
       )}
 
       <TableContainer component={Paper} style={{ boxShadow: 'none' }}>
@@ -145,16 +145,22 @@ const Games = () => {
                   <TableRow>
                     <TableCell colSpan={4}>
                           <Board position="start" pgnMoves={game.moves || ''} edit={false} showMoveTracker={true} showStockfish={false} />
-                          <Link to={`/games/${game.id}/edit`}>
-                            <Button variant="contained" style={{ float: 'right' }} className='oval-button' color='secondary'>
-                              <EditIcon style={{ marginRight: '5px', fontSize: '17px' }} />
-                              Edit
-                            </Button>
-                          </Link>
                           <Button variant='contained' style={{ float: 'right', backgroundColor: 'red', marginRight: '1em' }} className='oval-button' color="secondary" onClick={() => handleDeleteClick(game.id)}>
                             <DeleteIcon style={{ marginRight: '5px', fontSize: '17px' }} />
                             Delete
                           </Button>
+                          <Link to={`/games/${game.id}/edit`}>
+                            <Button variant="contained" style={{ float: 'right', marginRight: '1em' }} className='oval-button' color='secondary'>
+                              <EditIcon style={{ marginRight: '5px', fontSize: '17px' }} />
+                              Edit
+                            </Button>
+                          </Link>
+                          <Link to={`/games/${game.id}`}>
+                            <Button variant="contained" style={{ float: 'right', marginRight: '1em' }} className='oval-button' color='tertiary'>
+                              <PsychologyIcon style={{ marginRight: '5px', fontSize: '17px' }} />
+                              Study
+                            </Button>
+                          </Link>
 
                     </TableCell>
                   </TableRow>

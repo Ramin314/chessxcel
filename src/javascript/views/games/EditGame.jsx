@@ -98,7 +98,7 @@ const EditGame = () => {
       tags: tags.map((_tag) => (typeof _tag?.id === 'string' ? _tag.name : _tag?.id)),
     };
 
-    axios.post(`${globalState.baseApiUrl}/api/games/create`, game)
+    axios.post(`${globalState.baseApiUrl}/api/games/update/${id}`, game)
       .then((response) => {
         setSubmissionResult(response.data);
       })
@@ -151,10 +151,10 @@ const EditGame = () => {
         <ToggleButton value="white" aria-label="white" style={{ fontSize: '1em', textTransform: 'none' }}>
           white
         </ToggleButton>
-        <ToggleButton value="black" aria-label="black" style={{ fontSize: '1em', textTransform: 'none' }}>
+        <ToggleButton value="draw" aria-label="draw" style={{ fontSize: '1em', textTransform: 'none' }}>
           draw
         </ToggleButton>
-        <ToggleButton value="draw" aria-label="draw" style={{ fontSize: '1em', textTransform: 'none' }}>
+        <ToggleButton value="black" aria-label="black" style={{ fontSize: '1em', textTransform: 'none' }}>
           black
         </ToggleButton>
       </ToggleButtonGroup>
@@ -179,32 +179,7 @@ const EditGame = () => {
 
     <Box sx={{ m: 2 }}></Box>
 
-    <Board position="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1" pgnMoves={moves} setPgnMoves={setMoves} edit={true} showMoveTracker={true} />
-
-    <TextField
-      label="PGN (Portable Game Notation)"
-      multiline
-      rows={5}
-      value={textPgn}
-      onChange={(e) => {
-        const newPgn = e.target.value;
-        setTextPgn(newPgn);
-      }}
-      fullWidth
-      error={!validPgn}
-      helperText={pgnError}
-      onBlur={() => {
-        try {
-          (new Chess()).loadPgn(textPgn);
-          setMoves(textPgn);
-          setValidPgn(true);
-          setPgnError(null);
-        } catch (error) {
-          setValidPgn(false);
-          setPgnError('Invalid PGN. Be sure to correct it before submitting!');
-        }
-      }}
-    />
+    <Board position="rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1" pgnMoves={moves} setPgnMoves={setMoves} edit={false} showMoveTracker={true} />
 
     <Box sx={{ m: 2 }}></Box>
 
