@@ -195,6 +195,8 @@ const Board = ({
             fenPositions={fenPositions}
             currentMoveIndex={currentMoveIndex}
             handleMoveClick={handleMoveClick}
+            setFenPositions={setFenPositions}
+            setCurrentMoveIndex={setCurrentMoveIndex}
           />
         }
         {
